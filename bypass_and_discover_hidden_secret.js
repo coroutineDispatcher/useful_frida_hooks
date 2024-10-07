@@ -1,13 +1,11 @@
 function rootAndTamperingDetectionBypass() {
     console.log("[*] Start removing root and tampering detection");
 
-    // Bypass System.exit (for additional safety)
     var System = Java.use('java.lang.System');
     System.exit.implementation = function (var0) {
         console.log("Tampering bypass: preventing app exit");
     };
 
-    // Bypass fgets to prevent Frida detection
     console.log("[*] fgets overloading to avoid Frida detection");
     var fgetsPtr = Module.findExportByName("libc.so", "fgets");
     var fgets = new NativeFunction(fgetsPtr, 'pointer', ['pointer', 'int', 'pointer']);
@@ -69,7 +67,7 @@ function extractSecret() {
                 console.log('---------------------');
                 console.log('[*] XOR key');
                 console.log('---------------------');
-                var xor_key = 'pizzapizzapizzapizzapizz'; // The key used in your XOR operation
+                var xor_key = 'pizzapizzapizzapizzapizz'; // Key found by reverse engineering the APK in MainActivity
                 console.log(xor_key);
 
                 console.log('---------------------');
