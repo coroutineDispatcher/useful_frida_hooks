@@ -85,4 +85,4 @@ function extractSecret() {
 }
 
 rootAndTamperingDetectionBypass();
-//extractSecret();
+extractSecret();
